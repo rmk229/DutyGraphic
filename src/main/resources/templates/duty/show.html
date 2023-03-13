@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Duty</title>
+</head>
+<body>
+
+<p th:text="${duty.getDutyName() + ', ' + duty.getRang()}">VALUE</p>
+
+<div th:if="${orderlies.isEmpty()}">
+    <p>U dannogo dezhurnogo eshe net dnevalnyh</p>
+    <hr/>
+</div>
+
+<div th:if="${!orderlies.isEmpty()}">
+    <hr/>
+    <b>Orderlies:</b>
+    <br/>
+    <table th:each="orderly:${orderlies}">
+        <tr>
+            <td>
+                <span th:text="${orderly.getOrderlyName() + ', ' + orderly.getRang()}"
+                      th:style="${orderly.isExpired()} ? 'color: red' : 'color: black'">
+                    orderly
+                </span>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+</div>
+
+
+<form th:method="GET" th:action="@{/duty/{id}/edit(id=${duty.getDutyId()})}">
+    <input type="submit" value="Edit"/>
+</form>
+
+
+<br/>
+
+<form th:method="delete" th:action="@{/duty/{id}(id=${duty.getDutyId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+
+</body>
+</html>

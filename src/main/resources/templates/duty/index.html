@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index Duty</title>
+</head>
+<body>
+<div th:each="duty:${duties}">
+    <a th:href="@{/duty/{id}(id=${duty.getDutyId()})}"
+       th:text="${duty.getDutyName() + ', ' + duty.getRang()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/duty/new">Add new duty</a>
+</body>
+</html>

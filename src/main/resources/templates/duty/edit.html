@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit duty</title>
+</head>
+<body>
+
+<form th:method="patch" th:action="@{/duty/{id}(id=${duty.getDutyId()})}" th:object="${duty}">
+    <label for="dutyName">Enter duty name: </label>
+    <input type="text" th:field="*{dutyName}" id="dutyName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('dutyName')}" th:errors="*{dutyName}">Duty name error</div>
+    <br/>
+    <label for="rang">Enter duty rang: </label>
+    <input type="text" th:field="*{rang}" id="rang"/>
+    <div style="color:red" th:if="${#fields.hasErrors('rang')}" th:errors="*{rang}">Duty rang is error</div>
+    <br/>
+
+    <input type="submit" value="Update"/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New orderly</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/orderly}" th:object="${orderly}">
+    <label for="orderlyName">Enter orderly name: </label>
+    <input type="text" th:field="*{orderlyName}" id="orderlyName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('orderlyName')}" th:errors="*{orderlyName}">Orderly name error</div>
+    <br/>
+    <label for="rang">Enter rang of orderly: </label>
+    <input type="text" th:field="*{rang}" id="rang"/>
+    <div style="color:red" th:if="${#fields.hasErrors('rang')}" th:errors="*{rang}">Rang of orderly error</div>
+    <br/>
+
+    <input type="submit" value="Add new orderly"/>
+</form>
+
+
+</body>
+</html>

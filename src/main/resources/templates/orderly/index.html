@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orderly</title>
+</head>
+<body>
+
+
+<div th:each="orderly:${orderlies}">
+    <a th:href="@{/orderly/{id}(id=${orderly.getOrderlyId()})}"
+       th:text="${orderly.getOrderlyName() + ', ' + orderly.getRang()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/orderly/new">Add new orderly</a>
+
+</body>
+</html>

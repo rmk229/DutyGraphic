@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show orderly data</title>
+</head>
+<body>
+
+<p th:text="${orderly.getOrderlyName() + ', ' + orderly.getRang()}">VALUE</p>
+
+<div th:if="${duty}">
+    <span>This orderly was with: </span> <span th:text="${duty.getDutyName()}">Duty name</span>
+    <form th:method="PATCH" th:action="@{/orderly/{id}/release(id=${orderly.getOrderlyId()})}">
+        <input type="submit" value="Release orderly"/>
+    </form>
+</div>
+
+<br/>
+
+<div th:if="${duties}">
+    <span>This orderly is free. Whom to assign this orderly?</span>
+    <form th:method="PATCH" th:action="@{/orderly/{id}/assign(id=${orderly.getOrderlyId()})}">
+        <label for="duty">Change duty</label>
+        <select th:object="${duty}" th:field="*{dutyId}" id="duty">
+            <option th:each="duty:${duties}" th:value="${duty.getDutyId()}" th:text="${duty.getDutyName()}">
+            </option>
+        </select>
+        <input type="submit" value="Assign orderly"/>
+    </form>
+</div>
+<hr/>
+
+<form th:method="GET" th:action="@{/orderly/{id}/edit(id=${orderly.getOrderlyId()})}">
+    <input type="submit" value="Edit"/>
+</form>
+
+<form th:method="delete" th:action="@{/orderly/{id}(id=${orderly.getOrderlyId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>
